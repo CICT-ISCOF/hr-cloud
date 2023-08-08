@@ -1,63 +1,66 @@
-import dayjs from 'dayjs';
+import dayjs from 'dayjs'
 
 Error.prototype.toJSON = function () {
-	const alt = {} as any;
+    const alt = {} as any
 
-	const _this = this as any;
-	Object.getOwnPropertyNames(_this).forEach(function (key) {
-		alt[key] = _this[key];
-	}, _this);
+    const _this = this as any
+    Object.getOwnPropertyNames(_this).forEach(function (key) {
+        alt[key] = _this[key]
+    }, _this)
 
-	if ('stack' in alt) {
-		alt.stack = alt.stack
-			.split(/\r?\n/)
-			.map((string: string) => string.trim())
-			.filter((_: any, i: number) => i !== 0);
-	}
+    if ('stack' in alt) {
+        alt.stack = alt.stack
+            .split(/\r?\n/)
+            .map((string: string) => string.trim())
+            .filter((_: any, i: number) => i !== 0)
+    }
 
-	return alt;
-};
+    return alt
+}
 
 String.prototype.toNumber = function () {
-	const parts = this.split('.');
-	if (parts.length > 1) {
-		const whole = (parts[0].match(/\d/g) || []).join('');
-		const decimals = (parts[1].match(/\d/g) || []).join('');
-		return Number(`${whole}.${decimals}`) || 0;
-	}
-	const match = this.match(/\d/g);
-	if (!match) {
-		return 0;
-	}
-	return Number(match.join('')) || 0;
-};
+    const parts = this.split('.')
+    if (parts.length > 1) {
+        const whole = (parts[0].match(/\d/g) || []).join('')
+        const decimals = (parts[1].match(/\d/g) || []).join('')
+        return Number(`${whole}.${decimals}`) || 0
+    }
+    const match = this.match(/\d/g)
+    if (!match) {
+        return 0
+    }
+    return Number(match.join('')) || 0
+}
 
-const characters = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+const characters =
+    '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
 
 String.random = (size = 40) => {
-	let results = '';
+    let results = ''
 
-	for (let x = 0; x < size; x++) {
-		results += characters.charAt(Math.floor(Math.random() * characters.length));
-	}
+    for (let x = 0; x < size; x++) {
+        results += characters.charAt(
+            Math.floor(Math.random() * characters.length),
+        )
+    }
 
-	return results;
-};
+    return results
+}
 
 Array.prototype.random = function () {
-	return this[Math.floor(Math.random() * this.length)];
-};
+    return this[Math.floor(Math.random() * this.length)]
+}
 
 HTMLButtonElement.prototype.disable = function () {
-	this.setAttribute('disabled', 'disabled');
-};
+    this.setAttribute('disabled', 'disabled')
+}
 
 HTMLButtonElement.prototype.enable = function () {
-	this.removeAttribute('disabled');
-};
+    this.removeAttribute('disabled')
+}
 
 Date.prototype.toDayJS = function () {
-	return dayjs(this);
-};
+    return dayjs(this)
+}
 
-export {};
+export {}

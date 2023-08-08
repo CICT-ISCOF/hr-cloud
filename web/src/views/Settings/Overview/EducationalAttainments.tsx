@@ -1,11 +1,11 @@
 import React from 'react'
-import { useHistory } from "react-router-dom";
+import {useHistory} from 'react-router-dom'
 
-export default function EducationalAttainments( props: any ) {
+export default function EducationalAttainments(props: any) {
     const history = useHistory()
 
-    const user: any = localStorage.getItem( 'user' )
-    const id = JSON.parse( user ).id
+    const user: any = localStorage.getItem('user')
+    const id = JSON.parse(user).id
     return (
         <div className="col-md-6">
             <div className="card mb-4 shadow">
@@ -18,26 +18,36 @@ export default function EducationalAttainments( props: any ) {
                         </div>
                         <div className="col">
                             <a href="#">
-                                <h3 className="h5 mt-4 mb-1">Educational Attainments</h3>
+                                <h3 className="h5 mt-4 mb-1">
+                                    Educational Attainments
+                                </h3>
                             </a>
                             <p className="text-danger">
-                                {props.data.length === 0 ? 'No Personal Data Sheet Found' : ''}
+                                {props.data.length === 0
+                                    ? 'No Personal Data Sheet Found'
+                                    : ''}
                             </p>
 
                             <ul>
-                                {
-                                    props.data.map( ( data: any, index: any ) => (
-                                        <li key={index}>{data.Degree || data}</li>
-                                    ) )
-                                }
+                                {props.data.map((data: any, index: any) => (
+                                    <li key={index}>{data.Degree || data}</li>
+                                ))}
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div className="card-footer" style={{ display: id == props.id ? "block" : 'none' }} >
-                    <a role="button" onClick={() => {
-                        history.push( '/home/settings/profile/' + props.id )
-                    }} className="d-flex justify-content-between text-muted"><span>Account Settings</span><i className="fe fe-chevron-right"></i></a>
+                <div
+                    className="card-footer"
+                    style={{display: id == props.id ? 'block' : 'none'}}>
+                    <a
+                        role="button"
+                        onClick={() => {
+                            history.push('/home/settings/profile/' + props.id)
+                        }}
+                        className="d-flex justify-content-between text-muted">
+                        <span>Account Settings</span>
+                        <i className="fe fe-chevron-right"></i>
+                    </a>
                 </div>
             </div>
         </div>

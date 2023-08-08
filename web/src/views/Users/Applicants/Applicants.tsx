@@ -95,7 +95,7 @@ export default function Applicants() {
                                 {renderData()}
                                 {
                                     filteredData.map( ( applicant: any, index: any ) => (
-                                        <tr>
+                                        <tr key={index}>
                                             <td className="text-center">
                                                 <div className="avatar avatar-xl">
                                                     <img src={applicant.user.Avatar} alt="..." className="avatar-img rounded-circle" />

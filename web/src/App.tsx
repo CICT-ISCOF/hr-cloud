@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { StateContext } from './contexts';
-import { State } from './libraries/State';
-import { viewRoutes } from './routes/routes';
-import { firebaseConfig } from './Firebase/firebase'
-import firebase from 'firebase';
+import React, {useEffect} from 'react'
+import {Route, Switch} from 'react-router'
+import {BrowserRouter as Router} from 'react-router-dom'
+import {StateContext} from './contexts'
+import {State} from './libraries/State'
+import {viewRoutes} from './routes/routes'
 
 function App() {
     const urls = [
@@ -40,36 +38,30 @@ function App() {
         '/js/fill.js',
         '/js/uppy.config.js',
         '/js/apps.js',
-    ];
+    ]
 
     const injectScripts = () => {
-        const scripts = urls.map( ( url ) => {
-            const script = document.createElement( 'script' );
-            script.src = url;
+        const scripts = urls.map((url) => {
+            const script = document.createElement('script')
+            script.src = url
 
-            return script;
-        } );
+            return script
+        })
 
-        document.body.append( ...scripts );
-    };
-
-    useEffect( () => {
-        firebase.initializeApp( firebaseConfig );
-        // injectScripts();
-        // eslint-disable-next-line
-    }, [] );
+        document.body.append(...scripts)
+    }
 
     return (
-        <StateContext.Provider value={{ state: State.getInstance() }}>
+        <StateContext.Provider value={{state: State.getInstance()}}>
             <Router>
                 <Switch>
-                    {viewRoutes.map( ( route, index ) => (
+                    {viewRoutes.map((route, index) => (
                         <Route {...route} key={index} />
-                    ) )}
+                    ))}
                 </Switch>
             </Router>
         </StateContext.Provider>
-    );
+    )
 }
 
-export default App;
+export default App
